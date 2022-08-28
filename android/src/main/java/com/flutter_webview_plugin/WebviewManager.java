@@ -382,23 +382,25 @@ class WebviewManager {
             boolean debuggingEnabled,
             boolean ignoreSSLErrors
     ) {
-        webView.getSettings().setJavaScriptEnabled(withJavascript);
-        webView.getSettings().setBuiltInZoomControls(withZoom);
-        webView.getSettings().setSupportZoom(withZoom);
-        webView.getSettings().setDisplayZoomControls(displayZoomControls);
-        webView.getSettings().setDomStorageEnabled(withLocalStorage);
-        webView.getSettings().setLoadWithOverviewMode(withOverviewMode);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(supportMultipleWindows);
 
-        webView.getSettings().setSupportMultipleWindows(supportMultipleWindows);
+        if(Build.VERSION.SDK_INT<33) {
+            webView.getSettings().setJavaScriptEnabled(withJavascript);
+            webView.getSettings().setBuiltInZoomControls(withZoom);
+            webView.getSettings().setSupportZoom(withZoom);
+            webView.getSettings().setDisplayZoomControls(displayZoomControls);
+            webView.getSettings().setDomStorageEnabled(withLocalStorage);
+            webView.getSettings().setLoadWithOverviewMode(withOverviewMode);
+            webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(supportMultipleWindows);
 
-        webView.getSettings().setAppCacheEnabled(appCacheEnabled);
+            webView.getSettings().setSupportMultipleWindows(supportMultipleWindows);
 
-        webView.getSettings().setAllowFileAccessFromFileURLs(allowFileURLs);
-        webView.getSettings().setAllowUniversalAccessFromFileURLs(allowFileURLs);
+            webView.getSettings().setAppCacheEnabled(appCacheEnabled);
 
-        webView.getSettings().setUseWideViewPort(useWideViewPort);
+            webView.getSettings().setAllowFileAccessFromFileURLs(allowFileURLs);
+            webView.getSettings().setAllowUniversalAccessFromFileURLs(allowFileURLs);
 
+            webView.getSettings().setUseWideViewPort(useWideViewPort);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             webView.getSettings().setMediaPlaybackRequiresUserGesture(mediaPlaybackRequiresUserGesture);
         }
